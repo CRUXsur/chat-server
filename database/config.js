@@ -6,11 +6,12 @@ const mongoose = require('mongoose'); //importamos el paquete
 const dbConnection = async() => {
 
     try {
-/*         await mongoose.connect( process.env.DB_CNN, {
+        await mongoose.connect( process.env.DB_CNN, {
+            //* YA NO SON NECESARIOS, las version
             //useNewUrlParser: true,
             //useUnifiedTopology: true,
             //useCreateIndex: true
-        }); */
+        });
 
         console.log('DB Online');
         
