@@ -6,6 +6,12 @@ const express = require('express');
 const path = require('path');//import un paqueteS
 require('dotenv').config();// variables de entorno
 
+// DB Config
+const { dbConnection } = require('./database/config');
+dbConnection();
+// or
+//require('./database/config').dbConnection();
+
 
 //ahora me creo una aplicacion
 //App de Express
