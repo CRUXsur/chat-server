@@ -17,6 +17,9 @@ dbConnection();
 //App de Express
 const app = express(); //estolo inicializa y estoy listo2listen peticiones
 
+// Lectura y parseo del body(que viene del http)
+app.use( express.json() );
+
 
 //*
 //app.listen(process.env.PORT, (err)=>{
@@ -48,6 +51,10 @@ const publicPath = path.resolve( __dirname, 'public' );
 // const app = express();.... que, tiene este publicPath que lo sirva
 // que cuando se haga una peticion que lo muestre esto!....
 app.use( express.static( publicPath) );
+
+
+// Mis Rutas
+app.use( '/api/login', require('./routes/auth') );
 
 
 // tengo que estar escuchando en algun puerto 3000,(reemplazo por
