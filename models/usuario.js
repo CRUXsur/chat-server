@@ -25,7 +25,7 @@ const UsuarioSchema = Schema({
 
 });
 
-
+//! esto es para no regresar un usuario en respuesta a la peticion
 UsuarioSchema.method('toJSON', function() {
     // todo lo que no lo quiero , o no lo ocupo y 
     // en object seran almacenadas las demas propiedades 
