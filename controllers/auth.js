@@ -1,4 +1,5 @@
 const {response} = require('express');
+const bcrypt = require('bcryptjs');
 const Usuario = require('../models/usuario');
 
 const crearUsuario = async (req, res = response) => {
@@ -15,6 +16,11 @@ const crearUsuario = async (req, res = response) => {
         }
         //
         const usuario= new Usuario(req.body);
+
+        const salt = bcrypt.genSaltSync();
+        usuario.password = bcrypt.hashSync(password, salt);
+
+
         //*para grabar a la base de datos!!!!!
         await usuario.save();
         res.json({
