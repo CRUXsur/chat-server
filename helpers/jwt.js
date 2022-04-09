@@ -1,6 +1,10 @@
 const jwt = require('jsonwebtoken');
 
 //JWT: tiene tres partes: header, payload y firma
+//* este token en Flutter, lo tomamos y almacenarlo en algun lugar seguro  
+//* del dispositivo para utilizarlo como metodo de autenticacion de nuestro
+//* servicio y tb como metodo de autenticacion de nuestra comunicaion por sockets
+//*  */
 //funcion
 const generarJWT = ( uid ) => {
 
