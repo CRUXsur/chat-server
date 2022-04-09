@@ -7,7 +7,7 @@ const { check } = require('express-validator');
 
 const { crearUsuario, login, renewToken } = require('../controllers/auth');
 const { validarCampos } = require('../middlewares/validar-campos');
-//const { validarJWT } = require('../middlewares/validar-jwt');
+const { validarJWT } = require('../middlewares/validar-jwt');
 
 const router = Router(); // es una funcion NO una Clase
 
@@ -31,7 +31,10 @@ router.post('/', [
 ], login );
 
 // validar email, password
-//router.get('/renew', validarJWT, renewToken );
+//* Hago la peticion al : /renew
+//* requerimos un token,ese token tenemos lo verificarlo,validamos :validarJWT
+//* renewToken: el controlador
+router.get('/renew', validarJWT, renewToken );
 
 
 // cuando alguien necesite este archivo,
