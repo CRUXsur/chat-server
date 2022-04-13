@@ -22,8 +22,24 @@ io.on('connection', (client) =>{
     console.log('cliente autenticado');
     usuarioConectado(uid);
 
-
-
+    //* AQUI YA SE QUE EL CLIENTE ESTA AUTENTICADO, TOKEN VALIDO!
+    //* entonces aqui, yo necesito ingresar al usuario a una sala en particular
+    //* por defecto defecto se conectan a dos salas:
+    //* 1: sala Global, donde estan todas las personas y el servidor con el io.emit
+    //*    puede hacer un broadcast a todos los de esa sala
+    //* 2: si yo quiero mandar un msg a un cliente puedo hacerlo mediante el 
+    //*    client.id; ese id lo genera mi socket server de manera automatica
+    //* Pero yo quiero unir al usuario a una sala individual en la cual 
+    //* un tercero pueda decir yo le quiero mandar un msg a este fulano.... 
+    //* para eso el fulano tiene que estar escuchando esa sala y esa sala va a ser
+    //* una que tenga el uid del ese usuario asignada por la base de datos
+    client.join(uid);
+    // ypara mandar el mensaje seria
+    //client.to(uid).emit('el nombre del evento');
+    // escuchar del cliente el mensaje-personal (este es el evento!)
+    client.on('mensaje-personal', (payload)=>{
+        console.log(payload);
+    });
 
     client.on('disconnect', () => {
         console.log('Cliente desconectado');
