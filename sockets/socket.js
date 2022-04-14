@@ -39,6 +39,10 @@ io.on('connection', (client) =>{
     // escuchar del cliente el mensaje-personal (este es el evento!)
     client.on('mensaje-personal', (payload)=>{
         console.log(payload);
+        //! mando el mensaje a un canal, ese canl sera payload.para (el id de la persona)
+        //! la persona que se unio en su momento al chat, emit y emito el mismo evento
+        //! 'mensaje-personal' y mando de regreso el payload
+        io.to(payload.para).emit('mensaje-personal', payload);
     });
 
     client.on('disconnect', () => {
