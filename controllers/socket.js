@@ -1,4 +1,5 @@
 const Usuario = require('../models/usuario');
+const Mensaje = require('../models/mensaje');
 
 //* async porque voy a trabajar con la base de datos
 const usuarioConectado = async(uid='') =>{
@@ -22,7 +23,27 @@ const usuarioDesconectado = async(uid='') =>{
     return usuario;
 }
 
+const grabarMensaje = async(payload) => {
+    // el payload: deberia tener la siguiente sintaxis(esto yo espero)
+    /*
+        payload: {
+            de: '',
+            para:'',
+            texto:''
+        }
+    */
+
+    try {
+        const mensaje = new Mensaje( payload );
+        await mensaje.save();
+        return true;
+    } catch (error) {
+        return false;
+    }
+}
+
 module.exports = { //exporto por nombre
     usuarioConectado, 
-    usuarioDesconectado
+    usuarioDesconectado,
+    grabarMensaje
 }

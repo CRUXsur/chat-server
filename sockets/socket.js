@@ -1,7 +1,7 @@
-const { Server } = require('socket.io');
-const { comprobarJWT } = require('../helpers/jwt');
-const {usuarioConectado, usuarioDesconectado} = require('../controllers/socket')
+//const { Server } = require('socket.io');
 const {io} = require('../index');
+const { comprobarJWT } = require('../helpers/jwt');
+const {usuarioConectado, usuarioDesconectado, grabarMensaje} = require('../controllers/socket');
 
 
 //Mensajes de Sockets
@@ -37,8 +37,11 @@ io.on('connection', (client) =>{
     // ypara mandar el mensaje seria
     //client.to(uid).emit('el nombre del evento');
     // escuchar del cliente el mensaje-personal (este es el evento!)
-    client.on('mensaje-personal', (payload)=>{
-        console.log(payload);
+    client.on('mensaje-personal', async( payload ) => {
+        //console.log(payload);
+        //* aqui necesitamos grabar (guardar) el mensaje + de + para
+        await grabarMensaje( payload );   
+        //* ********************************************
         //! mando el mensaje a un canal, ese canl sera payload.para (el id de la persona)
         //! la persona que se unio en su momento al chat, emit y emito el mismo evento
         //! 'mensaje-personal' y mando de regreso el payload
