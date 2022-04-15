@@ -57,6 +57,7 @@ app.use( express.static( publicPath) );
 // Mis Rutas
 app.use( '/api/login', require('./routes/auth') );
 app.use( '/api/usuarios', require('./routes/usuarios') );
+app.use( '/api/mensajes', require('./routes/mensajes') );
 
 
 // tengo que estar escuchando en algun puerto 3000,(reemplazo por
